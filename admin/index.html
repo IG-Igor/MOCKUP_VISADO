@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Panel Administración – Visado BIM Blockchain</title>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        background-color: #f5f7fb;
+        margin: 0;
+        padding: 0;
+        color: #333;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #ffffff;
+        padding: 12px 24px;
+        border-bottom: 1px solid #e0e4f0;
+      }
+
+      .topbar-left {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .topbar h1 {
+        font-size: 18px;
+        margin: 0 0 0 12px;
+        font-weight: 600;
+        color: #c3002f;
+      }
+
+      .btn {
+        border-radius: 4px;
+        border: 1px solid #cfd4e3;
+        background: #fff;
+        padding: 6px 12px;
+        font-size: 13px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .btn-primary {
+        background: #d6002a;
+        border-color: #d6002a;
+        color: #fff;
+      }
+
+      .btn-ghost {
+        background: transparent;
+        border-color: transparent;
+        color: #555;
+      }
+
+      .btn-warning {
+        background: #fff7e6;
+        border-color: #ffc241;
+        color: #a66700;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 18px auto 40px;
+        padding: 0 16px 32px;
+      }
+
+      .card {
+        background: #ffffff;
+        border-radius: 6px;
+        border: 1px solid #e0e4f0;
+        padding: 16px 20px 20px;
+        margin-bottom: 18px;
+      }
+
+      .card-header {
+        font-weight: 600;
+        margin-bottom: 12px;
+        font-size: 15px;
+      }
+
+      .subheader {
+        font-size: 13px;
+        color: #777;
+        margin-bottom: 8px;
+      }
+
+      .alert {
+        background: #fff7e6;
+        border: 1px solid #ffe0a3;
+        color: #8a5a00;
+        padding: 10px 12px;
+        border-radius: 4px;
+        font-size: 13px;
+        margin-bottom: 14px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px 18px;
+      }
+
+      label {
+        font-size: 13px;
+        font-weight: 500;
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      input[type='text'],
+      input[type='datetime-local'],
+      input[type='number'],
+      select,
+      textarea {
+        width: 100%;
+        padding: 7px 9px;
+        font-size: 13px;
+        border-radius: 4px;
+        border: 1px solid #cfd4e3;
+        box-sizing: border-box;
+        background: #fff;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 70px;
+      }
+
+      .switch {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+      }
+
+      .switch input[type='checkbox'] {
+        width: 15px;
+        height: 15px;
+      }
+
+      .muted {
+        font-size: 12px;
+        color: #888;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+        font-size: 12px;
+      }
+
+      th,
+      td {
+        border: 1px solid #e2e6f2;
+        padding: 6px 8px;
+        text-align: left;
+      }
+
+      th {
+        background: #f3f5fb;
+        font-weight: 600;
+      }
+
+      .flex-between {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .tag {
+        display: inline-block;
+        background: #eef2ff;
+        color: #3b4cca;
+        border-radius: 999px;
+        padding: 2px 8px;
+        font-size: 11px;
+        border: 1px solid #dde3ff;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- TOP BAR -->
+    <div class="topbar">
+      <div class="topbar-left">
+        <a class="btn btn-ghost" href="../visado2/"> &#8592; Volver </a>
+        <h1>Panel de Administración – Visado BIM Blockchain</h1>
+      </div>
+      <div>
+        <button class="btn">Guardar borrador</button>
+        <button class="btn btn-primary">Guardar configuración</button>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- ESTADO GENERAL -->
+      <div class="card">
+        <div class="card-header">Estado general de la aplicación</div>
+
+        <div class="alert">
+          ⚠️ Para aplicar cualquier cambio en el entorno de producción, es necesario guardar la configuración de este
+          panel.
+        </div>
+
+        <div class="form-grid">
+          <div>
+            <label>Estado del servicio</label>
+            <select>
+              <option>En producción</option>
+              <option>Mantenimiento programado</option>
+              <option>Detenido</option>
+              <option>Entorno de pruebas</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Modo de operación</label>
+            <select>
+              <option>Normal</option>
+              <option>Solo lectura</option>
+              <option>Modo diagnóstico</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Versión desplegada</label>
+            <input type="text" value="v1.0.3" />
+          </div>
+
+          <div>
+            <label>Fecha / hora último reinicio</label>
+            <input type="datetime-local" />
+          </div>
+        </div>
+
+        <p class="muted" style="margin-top: 10px">
+          Los cambios de estado quedan registrados en la cadena de bloques como parte del registro de gobernanza del
+          servicio.
+        </p>
+      </div>
+
+      <!-- REGISTRO Y LOGS -->
+      <div class="card">
+        <div class="card-header">Registro y auditoría</div>
+        <p class="subheader">
+          Configuración del sistema de trazabilidad de eventos de visado, accesos de usuarios y operaciones sobre los
+          modelos BIM.
+        </p>
+
+        <div class="form-grid">
+          <div>
+            <label>Registro de actividad</label>
+            <div class="switch">
+              <input type="checkbox" id="log-activo" checked />
+              <label for="log-activo">Activar registro detallado</label>
+            </div>
+            <p class="muted">Incluye operaciones de visado, cambios de estado y fallos de validación BIM.</p>
+          </div>
+
+          <div>
+            <label>Nivel de detalle</label>
+            <select>
+              <option>INFO (recomendado)</option>
+              <option>DEBUG (alto detalle)</option>
+              <option>WARNING</option>
+              <option>ERROR</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Tiempo de retención de logs</label>
+            <select>
+              <option>30 días</option>
+              <option>90 días</option>
+              <option>180 días</option>
+              <option>1 año</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Exportación</label>
+            <button class="btn">Descargar último log</button>
+            <button class="btn btn-warning">Purgar logs antiguos</button>
+          </div>
+        </div>
+
+        <h4 style="margin-top: 18px; font-size: 13px">Últimos eventos registrados</h4>
+        <table>
+          <thead>
+            <tr>
+              <th>Fecha / hora</th>
+              <th>Usuario</th>
+              <th>Tipo de evento</th>
+              <th>Detalle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>18/09/2025 23:51:12</td>
+              <td>colegiado_1542</td>
+              <td>Visado aplicado</td>
+              <td>Creación de expediente BIM #2025-000342</td>
+            </tr>
+            <tr>
+              <td>18/09/2025 23:49:08</td>
+              <td>admin_cciccp</td>
+              <td>Cambio de estado</td>
+              <td>Aplicación puesta en modo mantenimiento</td>
+            </tr>
+            <tr>
+              <td>18/09/2025 23:40:22</td>
+              <td>api_blockchain</td>
+              <td>Registro hash</td>
+              <td>Hash de modelo IFC anclado en blockchain</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ALMACENAMIENTO -->
+      <div class="card">
+        <div class="card-header">Almacenamiento y modelos BIM</div>
+
+        <div class="form-grid">
+          <div>
+            <label>Uso actual de almacenamiento</label>
+            <input type="text" value="1,2 TB / 4 TB disponibles" readonly />
+            <p class="muted">Incluye documentación PDF, planos y modelos IFC almacenados en el repositorio seguro.</p>
+          </div>
+
+          <div>
+            <label>Umbral de alerta</label>
+            <div class="flex-between">
+              <input type="number" value="80" min="10" max="95" /> %
+              <span class="muted">Aviso automático al superar el umbral.</span>
+            </div>
+          </div>
+
+          <div>
+            <label>Política de archivado</label>
+            <select>
+              <option>Archivar expedientes cerrados > 3 años</option>
+              <option>Archivar expedientes cerrados > 5 años</option>
+              <option>No archivar automáticamente</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Operaciones</label>
+            <button class="btn">Lanzar proceso de archivado</button>
+            <button class="btn">Ver repositorios físicos</button>
+          </div>
+        </div>
+
+        <p class="muted" style="margin-top: 10px">
+          Los expedientes archivados mantienen su hash en blockchain para garantizar la inmutabilidad, aunque el fichero
+          físico se desplace a almacenamiento frío.
+        </p>
+      </div>
+
+      <!-- REGISTRO EN BLOCKCHAIN -->
+      <div class="card">
+        <div class="card-header">Registro en blockchain</div>
+        <p class="subheader">
+          Visión general del estado de conexión con la red de certificación y del volumen de transacciones asociadas a
+          visados.
+        </p>
+
+        <div class="form-grid">
+          <div>
+            <label>Estado de la red blockchain</label>
+            <input type="text" value="Conectado – nodo operativo" readonly />
+          </div>
+
+          <div>
+            <label>Última transacción confirmada</label>
+            <input type="datetime-local" />
+          </div>
+
+          <div>
+            <label>Transacciones de visado (últimos 30 días)</label>
+            <input type="text" value="842 operaciones" readonly />
+          </div>
+
+          <div>
+            <label>Herramientas</label>
+            <button class="btn">Ver consola del nodo</button>
+            <button class="btn">Reintentar sincronización</button>
+          </div>
+        </div>
+
+        <p class="muted" style="margin-top: 10px">
+          Cada cambio relevante de estado del expediente y cada modelo IFC validado generan una transacción firmada que
+          queda vinculada al identificador de visado y al colegiado responsable.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
